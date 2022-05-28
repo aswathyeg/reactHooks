@@ -8,10 +8,10 @@ function Ingredients() {
     <div className="App">
       <IngredientForm />
 
-      <section>
+      {/* <section>
         <Search />
-        {/* Need to add list here! */}
-      </section>
+        
+      </section> */}
     </div>
   );
 }
