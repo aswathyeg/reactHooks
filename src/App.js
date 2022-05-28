@@ -1,11 +1,15 @@
 import React from 'react';
-import Ingredients from './components/ingredients/Ingredients';
-
-const App = props => {
+import IngredientForm from './components/Ingredients/IngredientForm';
+import Ingredients from './components/Ingredients/Ingredients';
+import Card from './components/UI/Card';
+function App() {
   return (
     <div>
       
-<Ingredients />
+{/* <Ingredients /> */}
+<Card>
+<input type="text"/>
+</Card>
     </div>
   )
 };
