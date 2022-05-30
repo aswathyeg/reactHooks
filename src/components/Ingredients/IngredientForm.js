@@ -1,33 +1,47 @@
 import React  from "react";
 import './IngredientForm.css';
 import Card from '../UI/Card.css';
- //const IngredientForm = React.memo(props =>{ // to prevent unwanted rerendering
-    const IngredientForm = React.memo(props =>{
-    const submitHandler =(e)=>{
-        e.preventDefault();
 
-    }
-
+    const IngredientForm = React.memo(props =>{  // to prevent unwanted rerendering
+      let name;
+  
+        const submitForm =(e)=>{
+          e.preventDefault();
+        }
+        const getName =(e) =>{
+      name=e.target.value();
+      
+          
+        }
+        const getAmount =(e) =>{
+          
+        }
 
     return(
-        <section className="ingredient-form">
-      <Card>
-        <form onSubmit={submitHandler}>
+     
+
+      <div className="ingredient-form">
+    
+   
+        <form onSubmit={submitForm} >
           <div className="form-control">
-            <label htmlFor="title">Name</label>
-            <input type="text" id="title" />
+            <label>Name</label>
+            <input type="text"
+            onChange={getName} />
           </div>
           <div className="form-control">
-            <label htmlFor="amount">Amount</label>
-            <input type="number" id="amount" />
+            <label>Amount</label>
+            <input type="text"
+            onChange={getAmount}/>
           </div>
-          <div className="ingredient-form__actions">
-            <button type="submit">Add Ingredient</button>
+          <div>
+            <button>Add Ingredients</button>
           </div>
         </form>
-      </Card>
-    </section>
-    )
+       
+        </div>
+             
+        )
  });
 
 export default IngredientForm;
