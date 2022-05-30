@@ -6,12 +6,14 @@ import Search from './Search';
 const Ingredients=() =>{
   return (
     <div className="App">
-      <IngredientForm />
+       <IngredientForm /> 
 
       {/* <section>
         <Search />
         
       </section> */}
+      {/* <h1>test</h1> */}
+      
     </div>
   );
 }
