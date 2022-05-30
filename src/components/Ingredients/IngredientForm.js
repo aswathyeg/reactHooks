@@ -4,6 +4,8 @@ import Card from '../UI/Card.css';
 
     const IngredientForm = React.memo(props =>{  // to prevent unwanted rerendering
       let name;
+      let amount;
+
   
         const submitForm =(e)=>{
           e.preventDefault();
@@ -14,15 +16,14 @@ import Card from '../UI/Card.css';
           
         }
         const getAmount =(e) =>{
-          
+          amount=e.target.value();
         }
 
     return(
      
 
-      <div className="ingredient-form">
-    
-   
+      <section className="ingredient-form">
+
         <form onSubmit={submitForm} >
           <div className="form-control">
             <label>Name</label>
@@ -31,15 +32,15 @@ import Card from '../UI/Card.css';
           </div>
           <div className="form-control">
             <label>Amount</label>
-            <input type="text"
+            <input type="number"
             onChange={getAmount}/>
           </div>
           <div>
             <button>Add Ingredients</button>
           </div>
         </form>
-       
-        </div>
+   
+        </section>
              
         )
  });
