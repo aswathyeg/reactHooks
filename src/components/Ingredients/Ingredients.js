@@ -8,16 +8,24 @@ const Ingredients = () => {
   const [ingredients, setIngredients] = useState([]);
 
   const addIngredients = ingredient =>{ //title and amount
+    fetch('https://react-hooks-353b0-default-rtdb.firebaseio.com/ingredients.json',{
+      method:'POST',
+      body:JSON.stringify(ingredient),
+      headers:{'Content-Type':'application/json'}
+    }).then(response => { //promise-will not execute immediatly, only when above code done
+      setIngredients(prevIngredient =>
+        [...prevIngredient,
+          {id:Math.random().toString(),...ingredient}]
+      ); 
+        });
     
-    setIngredients(prevIngredient =>
-      [...prevIngredient,
-        {id:Math.random().toString(),...ingredient}]
-    );
 
   };
   const removeHandler = ingredientId => {
     setIngredients(prevIngredient => 
-      prevIngredient.filter(ingredient => ingredient.id !==ingredientId));//filter-if the function returns true, that item will remains, if false, that item get deleted
+      prevIngredient.filter(ingredient => ingredient.id !==ingredientId));//filter-if the function returns true, that item will remains, 
+      //if false, that item get deleted
+      // ingredient(placeholder) -is an object ,
     
 
   }
