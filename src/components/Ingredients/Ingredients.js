@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "./IngredientForm.css";
 import IngredientForm from "./IngredientForm";
 import Search from "./Search";
@@ -49,9 +49,10 @@ const Ingredients = () => {
     //if false, that item get deleted
     // ingredient(placeholder) -is an object ,
   };
-  const onLoadIngredients = (filteredIngredients) => {
+  const onLoadIngredients = useCallback((filteredIngredients) => {
+    //useCallback prevents rerendering
     setIngredients(filteredIngredients);
-  };
+  }, []);
 
   return (
     <div className="App">
