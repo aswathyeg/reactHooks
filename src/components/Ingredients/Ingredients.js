@@ -6,6 +6,7 @@ import IngredientList from "./IngredientList";
 
 const Ingredients = () => {
   const [ingredients, setIngredients] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     fetch(
@@ -43,11 +44,18 @@ const Ingredients = () => {
     });
   };
   const removeHandler = (ingredientId) => {
-    setIngredients((prevIngredient) =>
-      prevIngredient.filter((ingredient) => ingredient.id !== ingredientId)
-    ); //filter-if the function returns true, that item will remains,
-    //if false, that item get deleted
-    // ingredient(placeholder) -is an object ,
+    fetch(
+      `https://react-ingredients-e97be-default-rtdb.firebaseio.com/ingredients/${ingredientId}.json `,
+      {
+        method: "DELETE",
+      }
+    ).then((response) => {
+      setIngredients((prevIngredient) =>
+        prevIngredient.filter((ingredient) => ingredient.id !== ingredientId)
+      ); //filter-if the function returns true, that item will remains,
+      //if false, that item get deleted
+      // ingredient(placeholder) -is an object ,
+    });
   };
   const onLoadIngredients = useCallback((filteredIngredients) => {
     //useCallback prevents rerendering
