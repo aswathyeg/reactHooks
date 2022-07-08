@@ -28,6 +28,7 @@ const Ingredients = () => {
   }, []);
   const addIngredients = (ingredient) => {
     //title and amount
+    setIsLoading(true);
     fetch(
       "https://react-ingredients-e97be-default-rtdb.firebaseio.com/ingredients.json",
       {
@@ -36,6 +37,7 @@ const Ingredients = () => {
         headers: { "Content-Type": "application/json" },
       }
     ).then((response) => {
+      setIsLoading(false);
       //promise-will not execute immediatly, only when above code done
       setIngredients((prevIngredient) => [
         ...prevIngredient,
@@ -44,12 +46,14 @@ const Ingredients = () => {
     });
   };
   const removeHandler = (ingredientId) => {
+    setIsLoading(true);
     fetch(
       `https://react-ingredients-e97be-default-rtdb.firebaseio.com/ingredients/${ingredientId}.json `,
       {
         method: "DELETE",
       }
     ).then((response) => {
+      setIsLoading(false);
       setIngredients((prevIngredient) =>
         prevIngredient.filter((ingredient) => ingredient.id !== ingredientId)
       ); //filter-if the function returns true, that item will remains,
@@ -64,7 +68,7 @@ const Ingredients = () => {
 
   return (
     <div className="App">
-      <IngredientForm addIngredients={addIngredients} />{" "}
+      <IngredientForm addIngredients={addIngredients} loading={isLoading} />{" "}
       {/*will get input from this component .passing callback function here*/}
       <section className="ingredient-form">
         <Search filteredIngredientHandler={onLoadIngredients} />
