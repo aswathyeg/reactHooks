@@ -49,13 +49,16 @@ const Ingredients = () => {
     //if false, that item get deleted
     // ingredient(placeholder) -is an object ,
   };
+  const onLoadIngredients = (filteredIngredients) => {
+    setIngredients(filteredIngredients);
+  };
 
   return (
     <div className="App">
       <IngredientForm addIngredients={addIngredients} />{" "}
       {/*will get input from this component .passing callback function here*/}
       <section className="ingredient-form">
-        <Search />
+        <Search filteredIngredientHandler={onLoadIngredients} />
         <IngredientList ingredients={ingredients} onRemove={removeHandler} />
         {/* output */}
       </section>
