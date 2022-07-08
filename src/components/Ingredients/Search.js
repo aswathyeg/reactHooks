@@ -20,8 +20,9 @@ const Search = React.memo((props) => {
             amount: responseData[key].amount,
           });
         }
+        props.filteredIngredientHandler(loadedIngredients);
       });
-  }, []);
+  }, [enteredFilter]);
   const [filterInput, setFilterInput] = useState("");
   const onType = (e) => {
     setFilterInput(e.target.value);
