@@ -3,10 +3,12 @@ import "./IngredientForm.css";
 import IngredientForm from "./IngredientForm";
 import Search from "./Search";
 import IngredientList from "./IngredientList";
+import ErrorModal from "../UI/ErrorModal";
 
 const Ingredients = () => {
   const [ingredients, setIngredients] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState();
 
   useEffect(() => {
     fetch(
@@ -52,23 +54,35 @@ const Ingredients = () => {
       {
         method: "DELETE",
       }
-    ).then((response) => {
-      setIsLoading(false);
-      setIngredients((prevIngredient) =>
-        prevIngredient.filter((ingredient) => ingredient.id !== ingredientId)
-      ); //filter-if the function returns true, that item will remains,
-      //if false, that item get deleted
-      // ingredient(placeholder) -is an object ,
-    });
+    )
+      .then((response) => {
+        setIsLoading(false);
+        setIngredients((prevIngredient) =>
+          prevIngredient.filter((ingredient) => ingredient.id !== ingredientId)
+        ); //filter-if the function returns true, that item will remains,
+        //if false, that item get deleted
+        // ingredient(placeholder) -is an object ,
+      })
+      .catch((error) => {
+        setError("Somthing went wrong");
+      });
   };
   const onLoadIngredients = useCallback((filteredIngredients) => {
     //useCallback prevents rerendering
     setIngredients(filteredIngredients);
   }, []);
+  const closeHandler = () => {
+    setError(null);
+    setIsLoading(false);
+  };
 
   return (
     <div className="App">
-      <IngredientForm addIngredients={addIngredients} loading={isLoading} />{" "}
+      {error && <ErrorModal onClose={closeHandler}>{error}</ErrorModal>}
+      <IngredientForm
+        addIngredients={addIngredients}
+        loading={isLoading}
+      />{" "}
       {/*will get input from this component .passing callback function here*/}
       <section className="ingredient-form">
         <Search filteredIngredientHandler={onLoadIngredients} />
