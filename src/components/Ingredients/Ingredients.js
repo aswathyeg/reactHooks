@@ -14,9 +14,9 @@ const ingredientReducer = (currentIngredients, action) => {
       return [...currentIngredients, action.ingredient];
     }
     case "DELETE": {
-      return currentIngredients.filter((ingredients) => {
-        ingredients.id !== action.id;
-      });
+      return currentIngredients.filter(
+        (ingredients) => ingredients.id !== action.id
+      );
     }
     default:
       throw new Error("Should not get get there");
@@ -24,7 +24,7 @@ const ingredientReducer = (currentIngredients, action) => {
 };
 const Ingredients = () => {
   // const [ingredients, setIngredients] = useState([]);
-  // const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [ingredients, dispatch] = useReducer(ingredientReducer, []);
 
   const [error, setError] = useState();
@@ -44,8 +44,8 @@ const Ingredients = () => {
             title: responseData[identifier].title,
           });
         }
-        setIngredients(loadedIngredients);
-        console.log(loadedIngredients);
+        // setIngredients(loadedIngredients);
+        // console.log(loadedIngredients);
       });
   }, []);
   const addIngredients = (ingredient) => {
@@ -67,7 +67,7 @@ const Ingredients = () => {
       // ]);
       dispatch({
         type: "ADD",
-        ingredient: { id: responseData.name, ...ingredient },
+        ingredient: { id: response.name, ...ingredient },
       });
     });
   };
