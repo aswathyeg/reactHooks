@@ -1,14 +1,31 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useReducer, useState } from "react";
 import "./IngredientForm.css";
 import IngredientForm from "./IngredientForm";
 import Search from "./Search";
 import IngredientList from "./IngredientList";
 import ErrorModal from "../UI/ErrorModal";
 
+const ingredientReducer = (currentIngredients, action) => {
+  switch (action.type) {
+    case "SET": {
+    }
+    case "ADD": {
+      return [...currentIngredients, action.ingredient];
+    }
+    case "DELETE": {
+      return currentIngredients.filter((ingredients) => {
+        ingredients.id !== action.id;
+      });
+    }
+    default:
+      throw new Error("Should not get get there");
+  }
+};
 const Ingredients = () => {
   const [ingredients, setIngredients] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
+  const [] = useReducer();
 
   useEffect(() => {
     fetch(
