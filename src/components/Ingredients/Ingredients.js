@@ -22,13 +22,26 @@ const ingredientReducer = (currentIngredients, action) => {
       throw new Error("Should not get get there");
   }
 };
+const httpReducer = (currentHttpState, action) => {
+  switch (action.type) {
+    case "SEND":
+      return { loading: true, error: null };
+
+    case "RESPONSE":
+      return { ...httpState, loading: false };
+    case "ERROR":
+      return { loading: false, error: action.errorData };
+    default:
+      throw new Error("should not be reached");
+  }
+};
 const Ingredients = () => {
   // const [ingredients, setIngredients] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [ingredients, dispatch] = useReducer(ingredientReducer, []);
+  const [httpState, httpDispatch] = useReducer(httpReducer, []);
 
   const [error, setError] = useState();
-  const [] = useReducer();
 
   useEffect(() => {
     fetch(
