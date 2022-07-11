@@ -8,6 +8,7 @@ import ErrorModal from "../UI/ErrorModal";
 const ingredientReducer = (currentIngredients, action) => {
   switch (action.type) {
     case "SET": {
+      return action.ingredients;
     }
     case "ADD": {
       return [...currentIngredients, action.ingredient];
@@ -22,8 +23,10 @@ const ingredientReducer = (currentIngredients, action) => {
   }
 };
 const Ingredients = () => {
-  const [ingredients, setIngredients] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  // const [ingredients, setIngredients] = useState([]);
+  // const [isLoading, setIsLoading] = useState(false);
+  const [ingredients, dispatch] = useReducer(ingredientReducer, []);
+
   const [error, setError] = useState();
   const [] = useReducer();
 
@@ -58,10 +61,14 @@ const Ingredients = () => {
     ).then((response) => {
       setIsLoading(false);
       //promise-will not execute immediatly, only when above code done
-      setIngredients((prevIngredient) => [
-        ...prevIngredient,
-        { id: Math.random().toString(), ...ingredient },
-      ]);
+      // setIngredients((prevIngredient) => [
+      //   ...prevIngredient,
+      //   { id: Math.random().toString(), ...ingredient },
+      // ]);
+      dispatch({
+        type: "ADD",
+        ingredient: { id: responseData.name, ...ingredient },
+      });
     });
   };
   const removeHandler = (ingredientId) => {
@@ -74,11 +81,12 @@ const Ingredients = () => {
     )
       .then((response) => {
         setIsLoading(false);
-        setIngredients((prevIngredient) =>
-          prevIngredient.filter((ingredient) => ingredient.id !== ingredientId)
-        ); //filter-if the function returns true, that item will remains,
+        // setIngredients((prevIngredient) =>
+        //   prevIngredient.filter((ingredient) => ingredient.id !== ingredientId)
+        // ); //filter-if the function returns true, that item will remains,
         //if false, that item get deleted
         // ingredient(placeholder) -is an object ,
+        dispatch({ type: "DELETE", id: ingredientId });
       })
       .catch((error) => {
         setError("Somthing went wrong");
@@ -86,7 +94,8 @@ const Ingredients = () => {
   };
   const onLoadIngredients = useCallback((filteredIngredients) => {
     //useCallback prevents rerendering
-    setIngredients(filteredIngredients);
+    // setIngredients(filteredIngredients);
+    dispatch({ type: "SET", ingredients: filteredIngredients });
   }, []);
   const closeHandler = () => {
     setError(null);
