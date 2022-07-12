@@ -28,7 +28,7 @@ const httpReducer = (currentHttpState, action) => {
       return { loading: true, error: null };
 
     case "RESPONSE":
-      return { ...httpState, loading: false };
+      return { ...currentHttpState, loading: false };
     case "ERROR":
       return { loading: false, error: action.errorData };
     default:
@@ -39,7 +39,10 @@ const Ingredients = () => {
   // const [ingredients, setIngredients] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [ingredients, dispatch] = useReducer(ingredientReducer, []);
-  const [httpState, httpDispatch] = useReducer(httpReducer, []);
+  const [httpState, httpDispatch] = useReducer(httpReducer, {
+    loading: false,
+    error: null,
+  });
 
   const [error, setError] = useState();
 
