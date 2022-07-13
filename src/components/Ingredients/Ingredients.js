@@ -30,43 +30,33 @@ const httpReducer = (currentHttpState, action) => {
     case "RESPONSE":
       return { ...currentHttpState, loading: false };
     case "ERROR":
-      return { loading: false, error: action.errorData };
+      return { loading: false, error: action.errorMessage };
+    case "CLEAR":
+      return { ...currentHttpState, error: null };
     default:
       throw new Error("should not be reached");
   }
 };
 const Ingredients = () => {
   // const [ingredients, setIngredients] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
+  //const [error, setError] = useState();
   const [ingredients, dispatch] = useReducer(ingredientReducer, []);
   const [httpState, httpDispatch] = useReducer(httpReducer, {
     loading: false,
     error: null,
   });
 
-  const [error, setError] = useState();
-
   useEffect(() => {
     fetch(
       "https://react-ingredients-e97be-default-rtdb.firebaseio.com/ingredients.json"
-    )
-      .then((response) => response.json())
-      .then((responseData) => {
-        const loadedIngredients = [];
-        for (const identifier in responseData) {
-          loadedIngredients.push({
-            id: identifier,
-            amount: responseData[identifier].amount,
-            title: responseData[identifier].title,
-          });
-        }
-        // setIngredients(loadedIngredients);
-        // console.log(loadedIngredients);
-      });
-  }, []);
+    );
+  });
+
   const addIngredients = (ingredient) => {
     //title and amount
-    setIsLoading(true);
+    // setIsLoading(true);
+    httpDispatch({ type: "SEND" });
     fetch(
       "https://react-ingredients-e97be-default-rtdb.firebaseio.com/ingredients.json",
       {
@@ -75,12 +65,13 @@ const Ingredients = () => {
         headers: { "Content-Type": "application/json" },
       }
     ).then((response) => {
-      setIsLoading(false);
+      // setIsLoading(false);
       //promise-will not execute immediatly, only when above code done
       // setIngredients((prevIngredient) => [
       //   ...prevIngredient,
       //   { id: Math.random().toString(), ...ingredient },
       // ]);
+      httpDispatch({ type: "RESPONSE" });
       dispatch({
         type: "ADD",
         ingredient: { id: response.name, ...ingredient },
@@ -88,7 +79,8 @@ const Ingredients = () => {
     });
   };
   const removeHandler = (ingredientId) => {
-    setIsLoading(true);
+    //setIsLoading(true);
+    httpDispatch({ type: "SEND" });
     fetch(
       `https://react-ingredients-e97be-default-rtdb.firebaseio.com/ingredients/${ingredientId}.json `,
       {
@@ -96,7 +88,9 @@ const Ingredients = () => {
       }
     )
       .then((response) => {
-        setIsLoading(false);
+        httpDispatch({ type: "RESPONSE" });
+        return response.json();
+        // setIsLoading(false);
         // setIngredients((prevIngredient) =>
         //   prevIngredient.filter((ingredient) => ingredient.id !== ingredientId)
         // ); //filter-if the function returns true, that item will remains,
@@ -105,8 +99,12 @@ const Ingredients = () => {
         dispatch({ type: "DELETE", id: ingredientId });
       })
       .catch((error) => {
-        setError("Somthing went wrong");
+        //setError("Somthing went wrong");
+        httpDispatch({ type: "ERROR", errorMessage: "Somthing went wrong" });
       });
+    const clearError = () => {
+      httpDispatch({ type: "CLEAR" });
+    };
   };
   const onLoadIngredients = useCallback((filteredIngredients) => {
     //useCallback prevents rerendering
@@ -114,16 +112,18 @@ const Ingredients = () => {
     dispatch({ type: "SET", ingredients: filteredIngredients });
   }, []);
   const closeHandler = () => {
-    setError(null);
-    setIsLoading(false);
+    // setError(null);
+    //setIsLoading(false);
   };
 
   return (
     <div className="App">
-      {error && <ErrorModal onClose={closeHandler}>{error}</ErrorModal>}
+      {httpState.error && (
+        <ErrorModal onClose={closeHandler}>{httpState.error}</ErrorModal>
+      )}
       <IngredientForm
         addIngredients={addIngredients}
-        loading={isLoading}
+        loading={httpState.loading}
       />{" "}
       {/*will get input from this component .passing callback function here*/}
       <section className="ingredient-form">
