@@ -1,0 +1,24 @@
+.header{
+  display: block;
+   
+  /* margin-top: 0; */
+    text-align: center;
+    font-size: 30px;
+    margin: 10px 0;
+}
+.nav{
+  background-color: aquamarine;
+  display: flex;
+  height: 80px;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 0;
+  list-style: none;
+
+}
+.nav>li{
+  color: blue;
+}
+.nav>li.hover{
+  color: red;
+}
