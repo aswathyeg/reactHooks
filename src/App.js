@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Cart from "./components/shoppingCart/Cart";
 // import Ingredients from "./components/Ingredients/Ingredients";
 // import { AuthContext } from "./context/auth-context";
@@ -16,11 +16,15 @@ function App() {
   // return content;
   return (
     <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/cart" component={Cart} />
-        <Header />
-      </Switch>
+      <Header />
+      <div>
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+        </Routes>
+        <Routes>
+          <Route path="/cart" element={<Cart />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }
