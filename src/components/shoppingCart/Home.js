@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import faker from "faker";
+import { faker } from "@faker-js/faker";
 const Home = () => {
   const productArray = [...Array(20)].map(() => ({
     id: faker.datatype.uuid(),
