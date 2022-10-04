@@ -1,5 +1,14 @@
 import React from "react";
-const SingleProduct = (prod) => {
-  return <div></div>;
+const SingleProduct = ({ prod }) => {
+  return (
+    <div className="products">
+      <img src={prod.image} alt={prod.name} />
+      <div className="prodDesc">
+        <span style={{ fontWeight: 700 }}>{prod.name}</span>
+        <span>${prod.price.substring(0, 3)}</span>
+      </div>
+      <button className="add">Add to cart</button>
+    </div>
+  );
 };
-export default SingleProduct();
+export default SingleProduct;
