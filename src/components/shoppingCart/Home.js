@@ -6,6 +6,7 @@ const Home = () => {
     id: faker.datatype.uuid(),
     name: faker.commerce.productName(),
     price: faker.commerce.price(),
+    //image: faker.random.image.fashion(),
     image: faker.image.image(),
   }));
   const [products] = useState(productArray);
