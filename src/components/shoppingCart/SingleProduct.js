@@ -1,4 +1,5 @@
 import React from "react";
+import "./Styles.css";
 const SingleProduct = ({ prod }) => {
   return (
     <div className="products">
