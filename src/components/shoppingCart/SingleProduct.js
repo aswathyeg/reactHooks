@@ -1,6 +1,6 @@
 import React from "react";
 import "./Styles.css";
-const SingleProduct = ({ prod }) => {
+const SingleProduct = ({ prod, cart, setCart }) => {
   return (
     <div className="products">
       <img src={prod.image} alt={prod.name} />
