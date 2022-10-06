@@ -1,5 +1,5 @@
 import React from "react";
-const Cart = () => {
+const CartPage = () => {
   return (
     <div>
       <span style={{ fontSize: 30 }}>My cart</span>
@@ -7,4 +7,4 @@ const Cart = () => {
     </div>
   );
 };
-export default Cart;
+export default CartPage;
