@@ -1,5 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+//import CartPage from "./components/shoppingCart/Cart";
 import Cart from "./components/shoppingCart/Cart";
 // import Ingredients from "./components/Ingredients/Ingredients";
 // import { AuthContext } from "./context/auth-context";
