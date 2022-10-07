@@ -9,7 +9,7 @@ const Header = () => {
       <span className="header">context API</span>
       <ul className="nav">
         <li>
-          <Link to="/home">Home</Link>
+          <Link to="/">Home</Link>
         </li>
         <li>
           <Link to="/cart">Cart({cart.length})</Link>
