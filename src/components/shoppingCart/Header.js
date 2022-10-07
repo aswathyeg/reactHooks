@@ -6,7 +6,7 @@ const Header = () => {
   const { cart } = useContext(Cart);
   return (
     <div>
-      <span className="header">context API</span>
+      {/* <span className="header">context API</span> */}
       <ul className="nav">
         <li>
           <Link to="/">Home</Link>
