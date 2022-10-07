@@ -1,6 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Cart from "./components/shoppingCart/Cart";
+import CartPage from "./components/shoppingCart/CartPage";
+//import Cart from "./components/shoppingCart/CartPage";
 // import Ingredients from "./components/Ingredients/Ingredients";
 // import { AuthContext } from "./context/auth-context";
 // import Auth from "./components/Auth";
@@ -22,7 +23,7 @@ function App() {
           <Route exact path="/" element={<Home />} />
         </Routes>
         <Routes>
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={<CartPage />} />
         </Routes>
       </div>
     </BrowserRouter>
