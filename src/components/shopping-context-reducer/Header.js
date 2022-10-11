@@ -3,7 +3,11 @@ import Navbar from "react-bootstrap/Navbar";
 const Header = () => {
   return (
     <Navbar bg="dark">
-      <Container>Shopping cart</Container>
+      <Container>
+        <Navbar.Brand>
+          <a href="/">Shopping cart</a>
+        </Navbar.Brand>
+      </Container>
     </Navbar>
   );
 };
