@@ -1,4 +1,5 @@
 import React from "react";
+import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 //import CartPage from "./components/shoppingCart/CartPage";
 //import Cart from "./components/shoppingCart/CartPage";
@@ -6,7 +7,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 // import { AuthContext } from "./context/auth-context";
 // import Auth from "./components/Auth";
 import Header from "./components/shopping-context-reducer/Header";
-//import Home from "./components/shoppingCart/Home";
+import Home from "./components/shopping-context-reducer/Home";
+import Cart from "./components/shopping-context-reducer/Cart";
 
 function App() {
   // const authContext = useContext(AuthContext);
@@ -18,14 +20,14 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      {/*  <div>
+      <div>
         <Routes>
           <Route exact path="/" element={<Home />} />
         </Routes>
         <Routes>
-          <Route path="/cart" element={<CartPage />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
-      </div> */}
+      </div>
     </BrowserRouter>
   );
 }
