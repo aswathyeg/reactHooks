@@ -1,11 +1,12 @@
-import { Container, FormControl } from "react-bootstrap";
+import { Container, Dropdown, FormControl, Nav, Badge } from "react-bootstrap";
 import Navbar from "react-bootstrap/Navbar";
+import { FaShoppingCart } from "react-icons/fa";
 const Header = () => {
   return (
     <Navbar bg="dark" variant="dark" style={{ height: 80 }}>
       <Container>
         {/* for logo */}
-        <Navbar.Brand>
+        <Navbar.Brand variant="light">
           <a href="/">Shopping cart</a>
         </Navbar.Brand>
         <Navbar.Text className="search">
@@ -15,6 +16,14 @@ const Header = () => {
             style={{ width: 500 }}
           ></FormControl>
         </Navbar.Text>
+        <Nav>
+          <Dropdown alignRight>
+            <Dropdown.Toggle variant="success">
+              <FaShoppingCart color="white" fontSize="25px" />
+              <Badge>{10}</Badge>
+            </Dropdown.Toggle>
+          </Dropdown>
+        </Nav>
       </Container>
     </Navbar>
   );
