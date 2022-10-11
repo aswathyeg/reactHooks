@@ -1,13 +1,14 @@
 import { Container, Dropdown, FormControl, Nav, Badge } from "react-bootstrap";
 import Navbar from "react-bootstrap/Navbar";
 import { FaShoppingCart } from "react-icons/fa";
+import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <Navbar bg="dark" variant="dark" style={{ height: 80 }}>
       <Container>
         {/* for logo */}
         <Navbar.Brand variant="light">
-          <a href="/">Shopping cart</a>
+          <Link to="/">Shopping cart</Link>
         </Navbar.Brand>
         <Navbar.Text className="search">
           <FormControl
