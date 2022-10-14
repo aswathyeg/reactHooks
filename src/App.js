@@ -20,6 +20,7 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
+
       <div>
         <Routes>
           <Route exact path="/" element={<Home />} />
