@@ -7,20 +7,26 @@
     margin: 10px 0;
 }
 .nav{
-  background-color: aquamarine;
+  background-color: white;
   display: flex;
   height: 80px;
-  justify-content: space-around;
+  justify-content:space-between;
   align-items: center;
   margin-top: 0;
   list-style: none;
+  padding-left: 10%;
+  padding-right: 10%;
+  
 
 }
 .nav>li{
   color: blue;
+    /* text-decoration: none !important; */
+  
 }
 .nav>li.hover{
   color: red;
+ 
 }
 .productContainer{
   display: flex;
