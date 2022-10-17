@@ -17,7 +17,6 @@ const Home = () => {
           <SingleProduct prod={prod} key={prod.id} />
         ))}
       </div>
-      <p>Home</p>
     </div>
   );
 };
