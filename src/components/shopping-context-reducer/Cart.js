@@ -35,7 +35,11 @@ const Cart = () => {
                   <Rating rating={prod.ratings} />
                 </Col>
                 <Col md={2}>
-                  <Form.Control></Form.Control>
+                  <Form.Control as="select" value={prod.qty}>
+                    {[...Array(prod.inStock).keys()].map((x) => (
+                      <option key={x + 1}>{x + 1}</option>
+                    ))}
+                  </Form.Control>
                 </Col>
               </Row>
             </ListGroup.Item>
