@@ -1,25 +1,41 @@
 import { useEffect, useState } from "react";
-import { ListGroup } from "react-bootstrap";
+import { ListGroup, Row, Col, Button, Image } from "react-bootstrap";
 import { CartState } from "./context/Context";
-
+import Rating from "./Rating";
 const Cart = () => {
   const [total, setTotal] = useState();
+
+  const {
+    state: { cart },
+    dispatch,
+  } = CartState();
   useEffect(() => {
     setTotal(
       cart.reduce((acc, curr) => acc + Number(curr.price) * curr.qty, 0)
     );
   }, [cart]);
-  const {
-    state: { cart },
-    dispatch,
-  } = CartState();
 
   return (
     <div className="home">
       <div className="productContainer">
         <ListGroup>
           {cart.map((prod) => (
-            <span>{prod.name}</span>
+            <ListGroup.Item key={prod.id}>
+              <Row>
+                <Col md={2}>
+                  <Image src={prod.image} alt={prod.name} fluid rounded />
+                </Col>
+                <Col md={2}>
+                  <span>{prod.name}</span>
+                </Col>
+                <Col md={2}>
+                  <span>${prod.price}</span>
+                </Col>
+                <Col md={2}>
+                  <Rating rating={prod.ratings} />
+                </Col>
+              </Row>
+            </ListGroup.Item>
           ))}
         </ListGroup>
       </div>
