@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { ListGroup, Row, Col, Button, Image, Form } from "react-bootstrap";
+import { AiFillDelete } from "react-icons/ai";
 import { CartState } from "./context/Context";
 import Rating from "./Rating";
 const Cart = () => {
@@ -40,6 +41,20 @@ const Cart = () => {
                       <option key={x + 1}>{x + 1}</option>
                     ))}
                   </Form.Control>
+                </Col>
+                <Col md={2}>
+                  <Button
+                    type="button"
+                    variant="light"
+                    onClick={() =>
+                      dispatch({
+                        type: "Remove from Cart",
+                        payload: prod,
+                      })
+                    }
+                  >
+                    <AiFillDelete fontSize="20px" />
+                  </Button>
                 </Col>
               </Row>
             </ListGroup.Item>
