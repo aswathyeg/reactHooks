@@ -2,6 +2,7 @@ import { createContext, useContext, useReducer } from "react";
 import { faker } from "@faker-js/faker";
 import { cartReducer } from "./Reducers";
 export const Cart = createContext();
+faker.seed(99);
 
 const Context = ({ children }) => {
   //children will come from index.js
@@ -11,9 +12,10 @@ const Context = ({ children }) => {
     name: faker.commerce.productName(),
     price: faker.commerce.price(),
     image: faker.image.image(),
-    // inStock: faker.random.arrayElement([0, 3, 5, 6, 7]),
+    inStock: faker.helpers.arrayElement([0, 3, 5, 6, 7]),
     fastDelivery: faker.datatype.boolean(),
-    // ratings: faker.random.arrayElement([1, 2, 3, 4, 5]),
+    ratings: faker.helpers.arrayElement([1, 2, 3, 4, 5]),
+    //ratings: faker.helpers.randomize([1, 2, 3, 4, 5]),
   }));
   // const [cart, setCart] = useState([]);
   console.log(products);
