@@ -36,7 +36,19 @@ const Cart = () => {
                   <Rating rating={prod.ratings} />
                 </Col>
                 <Col md={2}>
-                  <Form.Control as="select" value={prod.qty}>
+                  <Form.Control
+                    as="select"
+                    value={prod.qty}
+                    onChange={() =>
+                      dispatch({
+                        type: "Change cart quantity",
+                        payload: {
+                          id: prod.id,
+                          qty: e.target.value,
+                        },
+                      })
+                    }
+                  >
                     {[...Array(prod.inStock).keys()].map((x) => (
                       <option key={x + 1}>{x + 1}</option>
                     ))}
