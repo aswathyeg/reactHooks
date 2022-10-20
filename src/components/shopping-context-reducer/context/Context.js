@@ -20,9 +20,16 @@ const Context = ({ children }) => {
   }));
   // const [cart, setCart] = useState([]);
   console.log(products);
+
   const [state, dispatch] = useReducer(cartReducer, {
     products: products,
     cart: [],
+  });
+  const [filterState, setFilterState] = useReducer(filterReducer, {
+    byStock: false,
+    byFastDelivery: false,
+    byRating: 0,
+    searchQuery: "",
   });
 
   return <Cart.Provider value={{ state, dispatch }}>{children}</Cart.Provider>;
