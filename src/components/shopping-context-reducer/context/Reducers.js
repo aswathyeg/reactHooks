@@ -19,3 +19,42 @@ export const cartReducer = (state, action) => {
       return state;
   }
 };
+export const filterReducer = (state, action) => {
+  switch (action.type) {
+    case "sort by price":
+      return {
+        ...state,
+        sort: action.payload,
+      };
+    case "filter by stock":
+      return {
+        ...state,
+        byStock: !state.byStock,
+      };
+    case "filter by delivery":
+      return {
+        ...state,
+        byFastDelivery: !state.byFastDelivery,
+      };
+    case "filter by rating":
+      return {
+        ...state,
+        byRating: action.payload,
+      };
+    case "filter by search":
+      return {
+        ...state,
+        searchQuery: action.payload,
+      };
+    case "clear filters":
+      return {
+        byStock: false,
+        byFastDelivery: false,
+        byRating: 0,
+        searchQuery: "",
+      };
+
+    default:
+      return state;
+  }
+};
