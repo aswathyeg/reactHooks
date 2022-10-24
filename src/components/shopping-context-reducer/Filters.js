@@ -47,14 +47,13 @@ const Filters = () => {
       <span>
         <Form.Check
           inline
-          label="Include Uut Of Stock"
+          label="Include Out Of Stock"
           name="group1"
           type="checkbox"
           id={`inline-3`}
           onChange={() =>
             filterDispatch({
               type: "filter by stock",
-              payload: "HighToLow",
             })
           }
           checked={byStock}
@@ -69,8 +68,7 @@ const Filters = () => {
           id={`inline-4`}
           onChange={() =>
             filterDispatch({
-              type: "filter by stock",
-              payload: "HighToLow",
+              type: "filter by delivery",
             })
           }
           checked={byFastDelivery}
@@ -89,7 +87,16 @@ const Filters = () => {
           style={{ cursor: "pointer" }}
         />
       </span>
-      <Button variant="light">Clear Filters</Button>
+      <Button
+        variant="light"
+        onClick={() =>
+          filterDispatch({
+            type: "clear filters",
+          })
+        }
+      >
+        Clear Filters
+      </Button>
     </div>
   );
 };
