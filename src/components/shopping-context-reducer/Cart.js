@@ -39,7 +39,7 @@ const Cart = () => {
                   <Form.Control
                     as="select"
                     value={prod.qty}
-                    onChange={() =>
+                    onChange={(e) =>
                       dispatch({
                         type: "Change cart quantity",
                         payload: {
@@ -76,7 +76,7 @@ const Cart = () => {
       <div className="filters summary">
         <span className="title">Subtotal({cart.length}) items </span>
         <span style={{ fontWeight: 700, fontSize: 20 }}>Total:${total}</span>
-        <Button type="button" disabled={cart.length == 0}>
+        <Button type="button" disabled={cart.length === 0}>
           Proceed To Checkout
         </Button>
       </div>
