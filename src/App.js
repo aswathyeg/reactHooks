@@ -3,12 +3,14 @@ import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 //import CartPage from "./components/shoppingCart/CartPage";
 //import Cart from "./components/shoppingCart/CartPage";
-// import Ingredients from "./components/Ingredients/Ingredients";
-// import { AuthContext } from "./context/auth-context";
-// import Auth from "./components/Auth";
-import Header from "./components/shopping-context-reducer/Header";
-import Home from "./components/shopping-context-reducer/Home";
-import Cart from "./components/shopping-context-reducer/Cart";
+
+// import Header from "./components/shopping-context-reducer/Header";
+// import Home from "./components/shopping-context-reducer/Home";
+// import Cart from "./components/shopping-context-reducer/Cart";
+
+import Header from "./components/artgallery/Header";
+import Home from "./components/artgallery/Home";
+import Cart from "./components/artgallery/Cart";
 // const Home = React.lazy(() =>
 //   import("./components/shopping-context-reducer/Home")
 // );
