@@ -14,7 +14,7 @@ const Home = () => {
   const [products] = useState(productsArray);
   console.log(productsArray);
   return (
-    <div>
+    <div className="productContainer">
       {products.map((prod) => (
         <SingleProduct prod={prod} key={prod.id} />
       ))}
