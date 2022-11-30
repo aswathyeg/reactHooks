@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Container,
   FormControl,
@@ -6,20 +6,18 @@ import {
   Badge,
   Dropdown,
   Nav,
-  Button,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
+import { Cart } from "./context/Context";
 const Header = () => {
+  const { cart } = useContext(Cart);
   return (
     <div>
       <Navbar variant="dark" style={{ height: 70 }} bg="dark">
         <Container>
-          <Navbar.Brand variant="light">
-            Arts
-            <Link to="/"></Link>
-          </Navbar.Brand>
-
+          <Link to="/">
+            <Navbar.Brand variant="light">Arts</Navbar.Brand>
+          </Link>
           <Navbar.Text>
             <FormControl
               placeholder="Search an art"
@@ -29,12 +27,13 @@ const Header = () => {
           <Nav>
             <Dropdown alignRight>
               <Dropdown.Toggle variant="success">
-                <Badge>Cart</Badge>
+                <Badge> {cart.length}</Badge>
               </Dropdown.Toggle>
               <Dropdown.Menu>
-                <Button style={{ width: "95%", margin: "0 10px" }}>
+                <Link to="/cart" style={{ width: "95%", margin: "0 10px" }}>
+                  {" "}
                   Go To Cart
-                </Button>
+                </Link>
               </Dropdown.Menu>
             </Dropdown>
           </Nav>
