@@ -10,7 +10,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Header from "./components/artgallery/Header";
 import Home from "./components/artgallery/Home";
-import Cart from "./components/artgallery/Cart";
+import CartPage from "./components/artgallery/CartPage";
 // const Home = React.lazy(() =>
 //   import("./components/shopping-context-reducer/Home")
 // );
@@ -33,7 +33,7 @@ function App() {
         </Routes>
         {/* </Suspense> */}
         <Routes>
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={<CartPage />} />
         </Routes>
       </div>
     </BrowserRouter>
