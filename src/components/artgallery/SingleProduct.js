@@ -20,7 +20,14 @@ const SingleProduct = ({ prod }) => {
           Remove from Cart
         </button>
       ) : (
-        <button className="add">AddtoCart</button>
+        <button
+          className="add"
+          onClick={() => {
+            setCart([...cart, prod]);
+          }}
+        >
+          AddtoCart
+        </button>
       )}
     </div>
   );
