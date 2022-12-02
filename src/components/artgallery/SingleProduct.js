@@ -1,36 +1,49 @@
-import React, { useContext } from "react";
-import { Cart } from "./context/Context";
+import { Button, Card } from "react-bootstrap";
+import Rating from "./Rating";
+import { CartState } from "./context/Context";
 import "./Styles.css";
 const SingleProduct = ({ prod }) => {
-  const { cart, setCart } = useContext(Cart);
+  const {
+    state: { cart },
+    dispatch,
+  } = CartState();
   return (
     <div className="products">
-      <img src={prod.image} alt={prod.name} />
-      <div className="prodDesc">
-        <span style={{ fontWeight: 700 }}>{prod.name}</span>
-        <span>${prod.price.substring(0, 3)}</span>
-      </div>
-      {cart.includes(prod) ? (
-        <button
-          className="remove"
-          onClick={() => {
-            setCart(cart.filter((c) => c.id !== prod.id));
-          }}
-        >
-          Remove from Cart
-        </button>
-      ) : (
-        <button
-          className="add"
-          onClick={() => {
-            setCart([...cart, prod]);
-          }}
-        >
-          AddtoCart
-        </button>
-      )}
+      <Card>
+        <Card.Img variant="top" src={prod.image} alt={prod.name} />
+        <Card.Body>
+          <Card.Title>{prod.name}</Card.Title>
+          <Card.Subtitle style={{ paddingBottom: 10 }}>
+            <span>${prod.price.split(".")[0]}</span>
+            {prod.fastDelivery ? (
+              <div>Fast Delivery</div>
+            ) : (
+              <div> 4 days Delivery</div>
+            )}
+            <Rating rating={prod.ratings} />
+          </Card.Subtitle>
+          {cart.some((p) => p.id === prod.id) ? (
+            <Button
+              onClick={() => {
+                dispatch({ type: "Remove from Cart", payload: prod });
+              }}
+              variant="danger"
+            >
+              Remove from Cart
+            </Button>
+          ) : (
+            <Button
+              onClick={() => {
+                dispatch({ type: "AddtoCart", payload: prod });
+              }}
+              disabled={!prod.inStock}
+            >
+              {!prod.inStock ? "Out Of Stock" : "Add To Cart"}
+            </Button>
+          )}
+        </Card.Body>
+      </Card>
     </div>
   );
 };
-
 export default SingleProduct;
