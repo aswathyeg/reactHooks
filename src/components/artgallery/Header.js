@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import {
   Container,
   FormControl,
@@ -8,9 +8,8 @@ import {
   Nav,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { Cart } from "./context/Context";
+
 const Header = () => {
-  const { cart } = useContext(Cart);
   return (
     <div>
       <Navbar variant="dark" style={{ height: 70 }} bg="dark">
@@ -27,7 +26,7 @@ const Header = () => {
           <Nav>
             <Dropdown alignRight>
               <Dropdown.Toggle variant="success">
-                <Badge> {cart.length}</Badge>
+                <Badge> </Badge>
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Link to="/cart" style={{ width: "95%", margin: "0 10px" }}>
