@@ -1,18 +1,29 @@
 export const cartReducer = (state, action) => {
   switch (action.type) {
-    case "Add to cart":
+    case "AddtoCart":
       return { ...state, cart: [...state.cart, { ...action.payload, qty: 1 }] };
     case "Remove from cart":
       return {
         ...state,
         cart: state.cart.filter((c) => c.id !== action.payload.id),
       };
-    case "change quantity in the cart":
+    case "Change cart quantity":
       return {
         ...state,
-        cart: cart.filter((c) =>
-          c.id === action.payload.id ? c.qty == action.payload.qty : qty == c.id
+        cart: state.cart.filter((c) =>
+          c.id === action.payload.id
+            ? (c.qty = action.payload.qty)
+            : (qty = c.id)
         ),
+      };
+  }
+};
+export const filterReducer = (state, action) => {
+  switch (action.type) {
+    case "filter by rating":
+      return {
+        ...state,
+        byRating: action.payload,
       };
   }
 };
