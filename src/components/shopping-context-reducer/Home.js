@@ -2,7 +2,7 @@ import { CartState } from "./context/Context";
 import Filters from "./Filters";
 import SingleProduct from "./SingleProduct";
 import "./Styles.css";
-
+import { CartState } from "./context/Context";
 const Home = () => {
   const {
     state: { products },
