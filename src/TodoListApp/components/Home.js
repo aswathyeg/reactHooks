@@ -7,6 +7,21 @@ const Home = () => {
   const handleClick = () => {
     setValue(state);
   };
+  let arr = [
+    {
+      id: 1,
+      name: "a",
+    },
+    {
+      id: 2,
+      name: "b",
+    },
+    {
+      id: 3,
+      name: "c",
+    },
+  ];
+
   return (
     <Container className="home">
       <Navbar.Text>
@@ -24,6 +39,9 @@ const Home = () => {
           })}
         </span>
       </Navbar.Text>
+      {arr.map((item) => {
+        return <div key={item.id}>{item.name},</div>;
+      })}
     </Container>
   );
 };
