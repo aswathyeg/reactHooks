@@ -8,14 +8,14 @@ export const cartReducer = (state, action) => {
         cart: state.cart.filter((c) => c.id !== action.payload.id),
       };
     case "Change cart quantity": {
-      return {
-        ...state,
-        cart: state.cart.filter((c) =>
-          c.id === action.payload.id
-            ? (c.qty = action.payload.qty)
-            : (qty = c.id)
-        ),
-      };
+      // return {
+      //   ...state,
+      //   cart: state.cart.filter((c) =>
+      //     c.id === action.payload.id
+      //       ? (c.qty = action.payload.qty)
+      //       : (qty = c.id)
+      //   ),
+      // };
     }
     default:
       return state;
