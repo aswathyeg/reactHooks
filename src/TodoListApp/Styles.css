@@ -4,4 +4,15 @@
     align-items: center;
     justify-content: center ;
     background-color: antiquewhite;
+    flex-direction: column;
+    
+    
 }
+/* .button{
+    display: flex;
+    border: none;
+  border-radius: 25px;
+  color: aquamarine;
+
+    
+} */
