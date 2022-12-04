@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { Container, FormControl, Navbar } from "react-bootstrap";
 import "../Styles.css";
 const Home = () => {
-  const [state, setState] = useState();
+  const [state, setState] = useState("");
   const [value, setValue] = useState([]);
-  const handleClick = () => {
-    setValue(state);
+  const handleClick = (e) => {
+    e.preventDefault();
+    setValue([{ id: `${state}-${Date.now()}`, state }, ...value]);
   };
 
   return (
@@ -16,19 +17,20 @@ const Home = () => {
             setState(e.target.value);
           }}
         ></FormControl>
-        <br></br>
-        <button onClick={handleClick}>Add</button>
-        <br></br>
-        <span>
-          {value.map((c) => {
-            return (
-              <ul>
-                <li>{c}</li>
-              </ul>
-            );
-          })}
-        </span>
       </Navbar.Text>
+      <button onClick={handleClick}>Go</button>
+
+      <span>
+        <ul>
+          {value.map((c) => (
+            <li>{c.state}</li>
+          ))}
+        </ul>
+      </span>
+      <div>
+        <button>Edit</button>
+        <button>Delete</button>
+      </div>
     </Container>
   );
 };
