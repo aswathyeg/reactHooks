@@ -4,32 +4,58 @@ import "../Styles.css";
 const Home = () => {
   const [state, setState] = useState("");
   const [value, setValue] = useState([]);
-  const handleClick = (e) => {
+  const [editId, setEditId] = useState(0);
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    // setValue([{ id: `${state}-${Date.now()}`, state }, ...value]);
-    setValue([{ id: `${state}-${Date.now()}`, state }, ...value]);
+    if (state !== "") {
+      // setValue([{ id: `${state}-${Date.now()}`, state }, ...value]);
+      setValue([{ id: `${state}-${Date.now()}`, state }, ...value]);
+      setState("");
+    }
   };
-  const handleEdit = () => {};
-  const handleDelete = () => {};
+
+  const handleEdit = (id) => {
+    const valueToEdit = value.find((i) => i.id === id);
+    setState(valueToEdit.state);
+    setEditId(id);
+  };
+  const handleDelete = (id) => {
+    const valueToDelete = value.filter((d) => d.id !== id);
+    setValue([...valueToDelete]);
+  };
 
   return (
     <Container className="home">
       <Navbar.Text>
         <FormControl
+          value={state}
           onChange={(e) => {
             setState(e.target.value);
           }}
         ></FormControl>
       </Navbar.Text>
-      <button onClick={handleClick}>Go</button>
+      <button onClick={handleSubmit}>{editId ? "Edit" : "Go"}</button>
 
       <span>
         <ul>
           {value.map((c) => (
-            <li>
+            <li key={c.id}>
               {c.state}
-              <button onClick={handleEdit}>Edit</button>
-              <button onClick={handleDelete}>Delete</button>
+              <button
+                onClick={() => {
+                  handleEdit(c.id);
+                }}
+              >
+                Edit
+              </button>
+              <button
+                onClick={() => {
+                  handleDelete(c.id);
+                }}
+              >
+                Delete
+              </button>
             </li>
           ))}
         </ul>
