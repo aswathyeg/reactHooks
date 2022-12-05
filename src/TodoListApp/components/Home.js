@@ -6,8 +6,11 @@ const Home = () => {
   const [value, setValue] = useState([]);
   const handleClick = (e) => {
     e.preventDefault();
+    // setValue([{ id: `${state}-${Date.now()}`, state }, ...value]);
     setValue([{ id: `${state}-${Date.now()}`, state }, ...value]);
   };
+  const handleEdit = () => {};
+  const handleDelete = () => {};
 
   return (
     <Container className="home">
@@ -23,14 +26,15 @@ const Home = () => {
       <span>
         <ul>
           {value.map((c) => (
-            <li>{c.state}</li>
+            <li>
+              {c.state}
+              <button onClick={handleEdit}>Edit</button>
+              <button onClick={handleDelete}>Delete</button>
+            </li>
           ))}
         </ul>
       </span>
-      <div>
-        <button>Edit</button>
-        <button>Delete</button>
-      </div>
+      <div></div>
     </Container>
   );
 };
