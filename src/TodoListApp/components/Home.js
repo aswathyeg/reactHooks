@@ -39,40 +39,42 @@ const Home = () => {
   };
 
   return (
-    <Container className="home">
-      <form onClick={handleSubmit}>
-        <input
-          value={state}
-          onChange={(e) => {
-            setState(e.target.value);
-          }}
-        />
-      </form>
-      <button type="submit">{editId ? "Edit" : "Go"}</button>
-      <span>
-        <ul>
-          {value.map((c) => (
-            <li key={c.id}>
-              {c.state}
-              <button
-                onClick={() => {
-                  handleEdit(c.id);
-                }}
-              >
-                Edit
-              </button>
-              <button
-                onClick={() => {
-                  handleDelete(c.id);
-                }}
-              >
-                Delete
-              </button>
-            </li>
-          ))}
-        </ul>
-      </span>
-    </Container>
+    <div className="home">
+      <div className="container">
+        <form className="formInput" onClick={handleSubmit}>
+          <input
+            value={state}
+            onChange={(e) => {
+              setState(e.target.value);
+            }}
+          />
+        </form>
+        <button type="submit">{editId ? "Edit" : "Go"}</button>
+        <span>
+          <ul>
+            {value.map((c) => (
+              <li key={c.id}>
+                {c.state}
+                <button
+                  onClick={() => {
+                    handleEdit(c.id);
+                  }}
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={() => {
+                    handleDelete(c.id);
+                  }}
+                >
+                  Delete
+                </button>
+              </li>
+            ))}
+          </ul>
+        </span>
+      </div>
+    </div>
   );
 };
 
